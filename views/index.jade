@@ -1,13 +1,15 @@
 extends layout
 
 block body
-	h1= title
-	p Welcome to #{title}
-	div(ng-controller="FolderController")
+  h1= title
+  p Welcome to #{title}
+  div(ng-controller="MsgController")
+    li(ng-repeat="msg in messages")
+      {{msg.msg}}
 
-	script(src='/socket.io/socket.io.js')
-	script(src='components/angular/angular.js')
+  script(src='/socket.io/socket.io.js')
+  script(src='components/angular/angular.js')
 
-	script(src='scripts/app.js')
-	script(src='scripts/controllers/FolderController.js')
-	script(src='scripts/services/FolderDataService.js')
+  script(src='scripts/app.js')
+  script(src='scripts/controllers/MsgController.js')
+  script(src='scripts/services/MsgService.js')
