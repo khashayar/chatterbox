@@ -1,12 +1,13 @@
 {
-  "name": "Tagger",
-  "version": "0.0.1",
+  "name": "ChatterBox",
+  "version": "0.0.0",
   "authors": [
-    "Khashayar Hajian <me@khashayar.me>"
+    "Khashayar Hajian <me@khashayar.me>",
+    "Ferdi Cam <flakyfilibuster@gmail.com>"
   ],
-  "description": "MP3 File Tagger",
+  "description": "Chat Application",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",

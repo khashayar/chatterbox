@@ -1,13 +1,14 @@
 {
-  "name": "Tagger",
-  "version": "0.0.1",
-  "description": "MP3 File Tagger",
+  "name": "ChatterBox",
+  "version": "0.0.0",
+  "description": "Chat Application",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": ""
   },
-  "author": "Khashayar Hajian",
-  "license": "BSD",
+  "author": ["Khashayar Hajian", "Ferdi Cam"]
+  "license": "MIT",
   "dependencies": {
     "express": "~3.4.8",
     "jade": "~1.1.5",
