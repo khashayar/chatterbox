@@ -1,0 +1,20 @@
+{
+  "name": "Tagger",
+  "version": "0.0.1",
+  "authors": [
+    "Khashayar Hajian <me@khashayar.me>"
+  ],
+  "description": "MP3 File Tagger",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.13"
+  }
+}

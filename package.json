@@ -1,0 +1,16 @@
+{
+  "name": "Tagger",
+  "version": "0.0.1",
+  "description": "MP3 File Tagger",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Khashayar Hajian",
+  "license": "BSD",
+  "dependencies": {
+    "express": "~3.4.8",
+    "jade": "~1.1.5",
+    "socket.io": "~0.9.16"
+  }
+}
