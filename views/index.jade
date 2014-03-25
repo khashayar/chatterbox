@@ -1,11 +1,10 @@
 extends layout
 
 block body
-  h1= title
-  p Welcome to #{title}
-  div(ng-controller="MsgController")
+  h1=title
+  p Welcome to {{title}}
     li(ng-repeat="msg in messages")
-      {{msg.msg}}
+      span {{msg.msg}}
 
   script(src='/socket.io/socket.io.js')
   script(src='components/angular/angular.js')
