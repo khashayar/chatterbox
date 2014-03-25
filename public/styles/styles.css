@@ -1,0 +1,57 @@
+@import "../fonts/fontface.css";
+html {
+  height: 100%;
+}
+body {
+  width: 970px;
+  height: 100%;
+  margin: 0 auto;
+}
+#container {
+  min-height: 100%;
+  position: relative;
+}
+section#content {
+  padding-bottom: 150px;
+}
+footer#text-input {
+  bottom: 0;
+  padding-top: 33px;
+  margin-bottom: 20px;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+}
+textarea {
+  height: 100%;
+  width: 100%;
+}
+h1 {
+  font-family: 'opensans_regular';
+  margin-top: 0;
+}
+p {
+  font-family: 'opensans_italic';
+}
+li {
+  list-style-type: none;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.blip {
+  width: 100%;
+  height: 40px;
+  font-family: 'opensans_light';
+  font-size: 12px;
+}
+.sender {
+  width: 50px;
+  padding-right: 30px;
+  font-family: 'opensans_semibold';
+  text-align: right;
+}
+.message {
+  border-bottom: 1px dotted lightgrey;
+}
