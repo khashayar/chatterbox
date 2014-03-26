@@ -1,33 +1,29 @@
 {
-    "name": "ChatterBox",
-    "version": "0.0.0",
-    "description": "Chat Application",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js",
-        "test": ""
-    },
-    "author": ["Khashayar Hajian", "Ferdi Cam"],
-    "license": "MIT",
-    "dependencies": {
-        "express": "~3.4.8",
-        "jade": "~1.1.5",
-        "socket.io": "~0.9.16"
-    },
-    "devDependencies": {
-        "karma": "~0.12.1",
-        "phantomjs": "~1.9",
-        "karma-ng-scenario": "~0.1",
-        "karma-junit-reporter": "~0.2.1",
-        "karma-chrome-launcher": "~0.1.2",
-        "karma-firefox-launcher": "~0.1.3",
-        "karma-script-launcher": "~0.1.0",
-        "karma-requirejs": "~0.1.0",
-        "karma-html2js-preprocessor": "~0.1.0",
-        "karma-coffee-preprocessor": "~0.1.0",
-        "karma-phantomjs-launcher": "~0.1.0",
-        "karma-script-launcher": "~0.1.0",
-        "karma-jasmine": "~0.1.5",
-        "protractor" : "~0.17.0"
-    }
+  "name": "ChatterBox",
+  "version": "0.0.0",
+  "description": "Chat Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "./node_modules/karma/bin/karma start ./config/karma.conf.js $*"
+  },
+  "author": [
+    "Khashayar Hajian",
+    "Ferdi Cam"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "~3.4.8",
+    "jade": "~1.1.5",
+    "socket.io": "~0.9.16"
+  },
+  "devDependencies": {
+    "karma": "~0.12.1",
+    "karma-ng-scenario": "~0.1",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-script-launcher": "~0.1.0",
+    "karma-jasmine": "~0.1.5",
+    "karma-junit-reporter": "^0.2.1"
+  }
 }

@@ -9,7 +9,7 @@ var app = express(),
 	server = require('http').createServer(app),
 	io = require('socket.io').listen(server);
 
-var routes = require('./routes')(app),
+var routes = require('./routes')(app, io),
 	path = require('path');
 
 // all environments
