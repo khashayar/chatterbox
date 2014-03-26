@@ -1,10 +1,18 @@
 doctype html
 html(ng-app="chatterBox")
-	head
-		meta(charset='utf8')
-		title chatterBox
-		base(href='/')
+  head
+  meta(charset='utf8')
+  title chatterBox
+  base(href='/')
 
-		link(rel='stylesheet', href='/styles/styles.css')
-	body(ng-controller="MsgController")
-		block body
+  link(rel='stylesheet', href='/styles/styles.css')
+  body(ng-controller="MsgController")
+    div(ng-view id="container")
+    script(src='/socket.io/socket.io.js')
+    script(src='components/angular/angular.js')
+    script(src='components/angular-route/angular-route.js')
+    script(src='components/angular-socket-io/socket.js')
+
+    script(src='scripts/app.js')
+    script(src='scripts/controllers/MsgController.js')
+    script(src='scripts/services/MsgService.js')

@@ -1,20 +1,10 @@
 extends layout
 
 block body
-  div(id="container")
-    header(id="site-header")
-      h1 chatterBox
-    section(id="content")
-      table
-        tr(ng-repeat="msg in messages" class="blip")
-          td(class="sender") {{msg.user}}
-          td(class="message") {{msg.msg}}
-          td(class="timestamp") {{msg.time}}
-
-    footer(id="text-input")
-      textarea(id="message-input" placeholder="Message")
+  div(ng-view)
   script(src='/socket.io/socket.io.js')
   script(src='components/angular/angular.js')
+  script(src='components/angular-route/angular-route.js')
   script(src='components/angular-socket-io/socket.js')
 
   script(src='scripts/app.js')
