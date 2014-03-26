@@ -13,7 +13,7 @@ chatterBox.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.when('/', {
             templateUrl: '../templates/container.html',
-            controller: 'MsgController'
+            controller: 'MessageListController'
         });
     }
 ]);
