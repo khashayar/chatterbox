@@ -10,7 +10,7 @@
         </li>
     </ul>
 </section>
-<footer id="text-input">
+<footer id="text-input" ng-controller="MessageInputController">
     <form ng-submit="sendMsg()">
         <input id="message-input" type="text" placeholder="Message" ng-model="msg">
     </form>
