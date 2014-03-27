@@ -14,24 +14,29 @@ describe('chatterBox controllers', function(){
 
     beforeEach(module('chatterBox'));
 
-    describe('MsgController', function() {
-        var scope, ctrl, $httpBackend;
+    describe('MessageListController', function() {
+        var scope, ctrl, $httpBackend, socket;
 
-        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, _socket_) {
+            socket = _socket_;
             $httpBackend = _$httpBackend_;
             $httpBackend.expectGET('/test').
                 respond({id: "1", userGet: "vasquez", userPost: "hudson", msg: "Hey Vasquez, have you ever been mistaken for a man?" });
 
             scope = $rootScope.$new();
-            ctrl = $controller('MsgController', {$scope: scope});
+
+            ctrl = $controller('MessageListController', {$scope: scope, socket: socket});
         }));
 
         it('should create "messages" model with 1 message', function() {
             expect(scope.messages).toEqual([]);
-            $httpBackend.flush();
 
-            expect(scope.messages).toEqualData(
-            [{id: "1", userGet: "vasquez", userPost: "hudson", msg: "Hey Vasquez, have you ever been mistaken for a man?" }]);
+            expect(scope.messages).toEqualData([]);
         });
+
+        it('should calculate the sum with add function', function() {
+            expect(scope.add(1,2)).toEqual(3);
+        }); 
+
     });
 });
