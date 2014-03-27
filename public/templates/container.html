@@ -1,6 +1,7 @@
 <header id="site-header">
     <h1>chatterBox</h1>
 </header>
+
 <section id="content">
     <ul id="message-container">
         <li ng-repeat="msg in messages" class="blip">
@@ -10,6 +11,7 @@
         </li>
     </ul>
 </section>
+
 <footer id="text-input" ng-controller="MessageInputController">
     <form ng-submit="sendMsg()">
         <input id="message-input" type="text" placeholder="Message" ng-model="msg">
