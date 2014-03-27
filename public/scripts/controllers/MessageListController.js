@@ -8,7 +8,7 @@ chatterBox.controller('MessageListController', ['$scope', 'socket', function($sc
 
     socket.on('message:send', function(data) {
         $scope.messages.push(data);
-    })
+    });
 
     $scope.title = "chatterBox";
     $scope.messages = [];

@@ -1,3 +1,4 @@
+'use strict';
 
 /**
  * Module dependencies.
@@ -25,11 +26,11 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+if ('development' === app.get('env')) {
+    app.use(express.errorHandler());
 }
 
 // Server
 server.listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port') +" "+ app.get('env'));
+    console.log('Express server listening on port ' + app.get('port') + ' running on ' + app.get('env') + ' env.');
 });
