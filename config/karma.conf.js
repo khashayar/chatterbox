@@ -1,16 +1,17 @@
+'use strict';
+
 module.exports = function(config) {
     config.set({
         basePath : '../',
 
         files : [
-            'test/lib/angular/angular.js',
-            'test/lib/angular/angular-*.js',
+            'public/components/angular-socket-io/mock/socket-io.js',
+            'public/components/angular/angular.js',
+            'public/components/angular-mocks/angular-mocks.js',
             'public/components/angular-route/angular-route.js',
             'public/components/angular-socket-io/socket.js',
             'public/scripts/**/*.js',
-            'test/unit/**/*.js',
-            'public/components/angular-socket-io/mock/socket-io.js',
-            'public/components/angular-mocks/angular-mocks.js'
+            'test/unit/**/*.js'
         ],
 
         exclude : [
