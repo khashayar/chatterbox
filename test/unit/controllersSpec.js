@@ -15,13 +15,10 @@ describe('chatterBox controllers', function(){
     beforeEach(module('chatterBox'));
 
     describe('MessageListController', function() {
-        var scope, ctrl, $httpBackend, socket;
+        var scope, ctrl, socket;
 
-        beforeEach(inject(function(_$httpBackend_, $rootScope, $controller, _socket_) {
+        beforeEach(inject(function($rootScope, $controller, _socket_) {
             socket = _socket_;
-            $httpBackend = _$httpBackend_;
-            $httpBackend.expectGET('/test').
-                respond({id: "1", userGet: "vasquez", userPost: "hudson", msg: "Hey Vasquez, have you ever been mistaken for a man?" });
 
             scope = $rootScope.$new();
 
@@ -36,7 +33,7 @@ describe('chatterBox controllers', function(){
 
         it('should calculate the sum with add function', function() {
             expect(scope.add(1,2)).toEqual(3);
-        }); 
+        });
 
     });
 });
