@@ -18,6 +18,12 @@
     "node": true,
 
     "globals": {
-        "chatterBox": false
+        "chatterBox": false,
+        "jasmine": false,
+        "describe": false,
+        "beforeEach": false,
+        "it": false,
+        "expect": false,
+        "inject": false
     }
 }
