@@ -28,11 +28,11 @@ describe('MessageInputController', function() {
             scope.sendMsg();
 
             // console.log(scope.messages);
-            expect(spy).toHaveBeenCalledWith({
+            expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({
                 id: 1,
                 msg: 'Hello World!',
-                user: 'user-' + 1,
-            });
+                user: 'user-' + 1
+            }));
         });
 
     });
