@@ -1,26 +1,38 @@
 @import "../fonts/fontface.css";
-html {
+html,
+body {
   height: 100%;
 }
 body {
   width: 970px;
-  height: 100%;
   margin: 0 auto;
 }
 #container {
   min-height: 100%;
   position: relative;
 }
+header#site-header {
+  padding: 50px 0;
+}
 section#content {
   padding-bottom: 150px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 footer#text-input {
   bottom: 0;
   padding-top: 33px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
   height: 100px;
   width: 100%;
   position: absolute;
+}
+footer#text-input input {
+  background: #eeeeee;
+  box-shadow: inset 0px 0px 16px -3px;
+  padding-left: 15px;
+  border: none;
+  font: normal 35px 'opensans_semibold';
 }
 #message-input,
 form {
@@ -41,13 +53,16 @@ ul {
 li {
   list-style-type: none;
 }
-.blip {
+li.blip {
   width: 100%;
   height: 35px;
   font-family: 'opensans_light';
   font-size: 12px;
 }
-.blip div {
+li.blip.join {
+  color: #eeeeee;
+}
+li.blip div {
   display: inline-block;
 }
 .sender {
@@ -57,7 +72,7 @@ li {
   text-align: right;
 }
 .message {
-  border-bottom: 1px dotted lightgrey;
+  border-bottom: 1px dotted #eeeeee;
   width: 80%;
 }
 .timestamp {
