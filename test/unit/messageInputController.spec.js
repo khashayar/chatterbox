@@ -10,7 +10,9 @@ describe('MessageInputController', function() {
     beforeEach(inject(function($rootScope, $controller) {
         /* global io */
         socket = io.connect();
+        // get scope
         scope = $rootScope.$new();
+        // instantiate controller with injected dependencies
         ctrl = $controller('MessageInputController', {$scope: scope, socket: socket});
     }));
 
@@ -21,13 +23,17 @@ describe('MessageInputController', function() {
             scope.msg = 'Hello World!';
             scope.messages = [];
 
+            // define jasmine spy
             var spy = jasmine.createSpy();
 
+            // set up spy listener
+            // spy should be called on below defined event
             socket.on('message:send', spy);
-            // console.log(ctrl);
+
+            // calling method that is supposed to emit spied event
             scope.sendMsg();
 
-            // console.log(scope.messages);
+            // if successful our spy will have been called as defined below
             expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({
                 id: 1,
                 msg: 'Hello World!',
