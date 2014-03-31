@@ -1,6 +1,7 @@
 @import (css) "../fonts/fontface.css";
 
 @color-lightgrey: #eee;  
+@color-regulargrey: #A6A6A6;
 
 html, body {
   height: 100%;
@@ -83,6 +84,9 @@ li {
   padding-right: 30px;
   font-family: 'opensans_semibold';
   text-align: right;
+  &:not(.isMe) {
+    color: @color-regulargrey;  
+  }
 }
 
 .message {

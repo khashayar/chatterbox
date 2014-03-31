@@ -71,6 +71,9 @@ li.blip div {
   font-family: 'opensans_semibold';
   text-align: right;
 }
+.sender:not(.isMe) {
+  color: #a6a6a6;
+}
 .message {
   border-bottom: 1px dotted #eeeeee;
   width: 80%;
