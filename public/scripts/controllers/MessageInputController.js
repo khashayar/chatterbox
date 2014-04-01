@@ -6,9 +6,14 @@ chatterBox.controller('MessageInputController', ['$scope', 'socket', function($s
     });
 
     $scope.sendMsg = function() {
-        var myData = {user: 'user-'+$scope.user, msg: $scope.msg, id: $scope.user };
-        $scope.messages.push(myData);
-        socket.emit('message:send', myData);
-        $scope.msg = '';
+        var data = {
+            id: $scope.user,
+            msg: $scope.msg,
+            user: 'user-' + $scope.user,
+        };
+
+        socket.emit('message:send', data);
+        $scope.messages.push(data);
+        delete $scope.msg;
     };
 }]);

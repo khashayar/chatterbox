@@ -24,10 +24,8 @@ describe('MessageInputController', function() {
             var spy = jasmine.createSpy();
 
             socket.on('message:send', spy);
-            // console.log(ctrl);
             scope.sendMsg();
 
-            // console.log(scope.messages);
             expect(spy).toHaveBeenCalledWith({
                 id: 1,
                 msg: 'Hello World!',
