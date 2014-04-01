@@ -1,5 +1,6 @@
+'use strict';
+
 var ChatterBoxMainpage = function() {
-    'use strict';
     this.msgInput = element(by.model('msg'));
     this.header = element(by.css('#site-header h1'));
     this.chatMessage = element(by.css('li div.message'));

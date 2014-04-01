@@ -15,7 +15,6 @@ module.exports = function (socket) {
     // socket.broadcast('user:join', {});
 
     socket.on('message:send', function(data) {
-        //TODO: save message inside DB
         data.user = 'user-' + data.id;
         data.time = Date.now();
 
@@ -23,7 +22,7 @@ module.exports = function (socket) {
     });
 
     socket.on('disconnect', function (data) {
-        console.log(">>>> user disconnected: ", data);
+        console.log('>>>> user disconnected: ', data);
         // Clean up stuff
     });
 };

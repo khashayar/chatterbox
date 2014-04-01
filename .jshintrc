@@ -9,7 +9,6 @@
     "noempty": true,
     "quotmark": "single",
     "undef": true,
-    "unused": true,
 
     "strict": true,
     "trailing": true,
@@ -24,6 +23,9 @@
         "beforeEach": false,
         "it": false,
         "expect": false,
-        "inject": false
+        "inject": false,
+        "element": false,
+        "by": false,
+        "browser": false
     }
 }

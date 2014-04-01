@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
     grunt.initConfig({
@@ -8,10 +10,10 @@ module.exports = function(grunt) {
             }
         },
         less: {
-          dev: {
-              files: {
+            dev: {
+                files: {
                     'public/styles/styles.css': 'public/styles/styles.less'
-                  }
+                }
             }
         }
     });
