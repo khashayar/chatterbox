@@ -2,7 +2,7 @@
 
 module.exports = function(config) {
     config.set({
-        basePath : '../',
+        basePath : '../../',
 
         files : [
             'public/components/angular-socket-io/mock/socket-io.js',

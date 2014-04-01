@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "./node_modules/karma/bin/karma start ./config/karma.conf.js $*"
+    "test": "./node_modules/karma/bin/karma start ./config/test/karma.conf.js"
   },
   "author": [
     "Khashayar Hajian",
