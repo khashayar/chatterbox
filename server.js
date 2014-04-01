@@ -6,12 +6,16 @@
 
 var express = require('express');
 
-var app = express(),
-	server = require('http').createServer(app),
-	io = require('socket.io').listen(server);
+var app = express();
+var passport = require('passport');
 
-var routes = require('./routes')(app, io),
-	path = require('path');
+// Socket.io
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+// Routes
+var routes = require('./routes')(app, io, passport);
+var path = require('path');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -24,6 +28,13 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Required for Passport
+require('./config/auth/passport')(passport);
+app.use(express.cookieParser());
+app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // development only
 if ('development' === app.get('env')) {
