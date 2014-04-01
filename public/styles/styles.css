@@ -4,7 +4,7 @@ body {
   height: 100%;
 }
 body {
-  width: 970px;
+  max-width: 970px;
   margin: 0 auto;
 }
 #container {
@@ -15,17 +15,26 @@ header#site-header {
   padding: 50px 0;
 }
 section#content {
-  padding-bottom: 150px;
-  max-height: 400px;
-  overflow-y: auto;
+  top: 100px;
+  position: absolute;
+  left: .5em;
+  right: .5em;
+  bottom: 7em;
+}
+section#content ul {
+  position: absolute;
+  top: .5em;
+  bottom: 0;
+  left: .5em;
+  right: 0;
+  overflow: auto;
 }
 footer#text-input {
-  bottom: 0;
-  padding-top: 33px;
-  margin-bottom: 70px;
-  height: 100px;
-  width: 100%;
   position: absolute;
+  bottom: 1.5em;
+  left: .5em;
+  right: .5em;
+  height: 5em;
 }
 footer#text-input input {
   background: #eeeeee;
