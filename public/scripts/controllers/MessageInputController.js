@@ -1,14 +1,11 @@
 'use strict';
 
 chatterBox.controller('MessageInputController', ['$scope', 'socket', function($scope, socket) {
-    socket.on('init', function(data) {
-        $scope.user = data.id;
-    });
-
     $scope.sendMsg = function() {
         var data = {
             id: $scope.user,
             msg: $scope.msg,
+            time: Date.now(),
             user: 'user-' + $scope.user,
         };
 

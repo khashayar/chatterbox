@@ -22,7 +22,8 @@ module.exports = function (socket) {
         socket.broadcast.emit('message:send', data);
     });
 
-    socket.on('disconnect', function () {
+    socket.on('disconnect', function (data) {
+        console.log(">>>> user disconnected: ", data);
         // Clean up stuff
     });
 };
