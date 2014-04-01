@@ -11,15 +11,12 @@ body {
   min-height: 100%;
   position: relative;
 }
-header#site-header {
-  padding: 50px 0;
-}
 section#content {
-  top: 100px;
+  top: 50px;
   position: absolute;
   left: .5em;
   right: .5em;
-  bottom: 7em;
+  bottom: 4em;
 }
 section#content ul {
   position: absolute;
@@ -31,15 +28,15 @@ section#content ul {
 }
 footer#text-input {
   position: absolute;
-  bottom: 1.5em;
+  bottom: 0;
   left: .5em;
   right: .5em;
-  height: 5em;
+  height: 3.5em;
 }
 footer#text-input input {
   background: #eeeeee;
-  box-shadow: inset 0px 0px 16px -3px;
-  padding-left: 15px;
+  box-shadow: inset 0px 0px 10px -3px;
+  padding-left: 5px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
@@ -47,14 +44,15 @@ footer#text-input input {
   box-sizing: border-box;
   /* Opera/IE 8+ */
   border: none;
-  font: normal 35px 'opensans_semibold';
+  font: normal 15px 'opensans_light';
 }
 #message-input,
 form {
-  height: 100%;
+  height: 80%;
   width: 100%;
 }
 h1 {
+  text-align: center;
   font-family: 'opensans_regular';
   margin-top: 0;
 }
@@ -63,7 +61,7 @@ p {
 }
 ul {
   margin: 0;
-  padding: 0;
+  padding: 0 15px 0 0;
 }
 li {
   list-style-type: none;
@@ -90,9 +88,66 @@ li.blip div {
   color: #a6a6a6;
 }
 .message {
-  border-bottom: 1px dotted #eeeeee;
-  width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 40%;
 }
 .timestamp {
   float: right;
+}
+@media all and (min-width: 450px) {
+  header#site-header {
+    padding: 30px 0;
+  }
+  h1 {
+    text-align: left;
+    font-size: 40px;
+    text-shadow: 1px 1px 5px;
+    padding-left: 15px;
+    margin-top: 0;
+  }
+  section#content {
+    top: 100px;
+    bottom: 7em;
+  }
+  .message {
+    border-bottom: 1px dotted #eeeeee;
+    width: 65%;
+  }
+  #message-input,
+  form {
+    height: 100%;
+  }
+  footer#text-input {
+    position: absolute;
+    bottom: 1.5em;
+    left: .5em;
+    right: .5em;
+    height: 5em;
+  }
+  footer#text-input input {
+    background: #eeeeee;
+    box-shadow: inset 0px 0px 16px -3px;
+    padding-left: 15px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
+    border: none;
+    font: normal 35px 'opensans_semibold';
+  }
+}
+@media all and (min-width: 600px) {
+  .message {
+    border-bottom: 1px dotted #eeeeee;
+    width: 75%;
+  }
+}
+@media all and (min-width: 800px) {
+  .message {
+    border-bottom: 1px dotted #eeeeee;
+    width: 80%;
+  }
 }
