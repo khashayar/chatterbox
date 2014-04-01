@@ -15,4 +15,4 @@ echo "Starting Protractor tests"
 echo $BASE_DIR
 echo "-------------------------------------------------------------------"
 
-$BASE_DIR/../node_modules/protractor/bin/protractor $BASE_DIR/../config/protractor-conf.js $*
+$BASE_DIR/../node_modules/protractor/bin/protractor $BASE_DIR/../config/test/protractor-conf.js $*
