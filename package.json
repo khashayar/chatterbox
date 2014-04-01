@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "./node_modules/karma/bin/karma start ./config/test/karma.conf.js"
+    "test": "./node_modules/karma/bin/karma start ./config/test/karma.conf.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "author": [
     "Khashayar Hajian",
