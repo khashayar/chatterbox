@@ -17,6 +17,7 @@
     "node": true,
 
     "globals": {
+        "angular": false,
         "chatterBox": false,
         "jasmine": false,
         "describe": false,
