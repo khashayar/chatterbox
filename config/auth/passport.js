@@ -1,20 +1,29 @@
 'use strict';
 
+// Strategies
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+// Models
+var ObjectID = require('mongodb').ObjectID;
+// var User = require('../../models/user');
+
 var credentials = require('./credentials');
 
-module.exports = function(passport) {
+module.exports = function(data) {
+    var passport = data.passport;
 
     // serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     // deserialize the user
     passport.deserializeUser(function(id, done) {
-
+        var users = data.db.collection('users');
+        users.findOne({'_id': ObjectID.createFromHexString(id)}, function(err, user) {
+            done(err, user);
+        });
     });
 
     // Google
@@ -25,10 +34,30 @@ module.exports = function(passport) {
         clientSecret: credentials.google.clientSecret
 
     }, function(accessToken, refreshToken, profile, done) {
+        // console.log('-- Auth done');
 
         // asynchronous
         process.nextTick(function() {
-            
+            var users = data.db.collection('users');
+            users.findOne({'google.id': profile.id}, function(err, user) {
+                if (err) { return done(err); }
+
+                if (user) {
+                    return done(null, user);
+                } else {
+                    users.insert({
+                        google: {
+                            id: profile.id,
+                            token: accessToken,
+                            name: profile.displayName,
+                            email: profile.emails[0].value
+                        }
+                    }, {w:1}, function(err, result) {
+                        if (err) { throw err; }
+                        return done(null, result);
+                    });
+                }
+            });
         });
 
     }));

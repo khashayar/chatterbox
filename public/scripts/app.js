@@ -7,13 +7,13 @@ var chatterBox = angular.module('chatterBox', [
 
 chatterBox.factory('socket', function (socketFactory) {
     return socketFactory();
-});
+})
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $routeProvider.when('/', {
+        templateUrl: 'templates/container.html'
+    }).when('/profile', {
+        templateUrl: 'templates/messages.html'
+    }).otherwise({redirectTo: '/'});
 
-chatterBox.config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.when('/', {
-            templateUrl: '../templates/container.html',
-            controller: 'MessageListController'
-        });
-    }
-]);
+    $locationProvider.html5Mode(true);
+}]);
