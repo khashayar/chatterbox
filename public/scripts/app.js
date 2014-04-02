@@ -1,5 +1,6 @@
 'use strict';
 
+/*jshint -W079 */
 var chatterBox = angular.module('chatterBox', [
     'ngRoute',
     'btford.socket-io'
