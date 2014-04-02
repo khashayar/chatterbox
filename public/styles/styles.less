@@ -3,6 +3,8 @@
 @color-lightgrey: #fafafa;
 @color-grey: #eee;
 @color-regulargrey: #A6A6A6;
+@color-lightbluetrans: rgba(173,216,230,.3);
+@color-lightgreentrans: rgba(144, 238, 144, .3);
 
 html, body {
   height: 100%;
@@ -12,11 +14,16 @@ body {
   max-width: 970px;
   margin: 0 auto;
   background: @color-lightgrey;
+  overflow: hidden;
 }
 
 #container {
   min-height: 100%;
   position: relative;
+}
+
+.chatBox {
+  min-height: 300px;
 }
 
 section#content {
@@ -79,7 +86,7 @@ p {
 
 ul {
   margin: 0;
-  padding: 0 15px 0 0;
+  padding: 0 10px 0 0;
 }
 
 li {
@@ -88,24 +95,46 @@ li {
   &.blip {
     width: 100%;
     font-family: 'opensans_light';
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
 .message-wrapper {
   overflow: auto;
-  padding: 10px 0 10px 0;
+  padding: 10px;
+  margin: 5px;
+  &:before {
+    content: '';
+    background: @color-lightbluetrans;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-border-radius: 10px;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius: 10px;
+    -moz-border-radius-bottomleft: 0;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.message-wrapper:not(.isMe):before {
+  background: @color-lightgreentrans;  
+    -webkit-border-radius: 10px;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius: 10px;
+    -moz-border-radius-bottomleft: 0;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
 }
 
 .sender {
   float: left;
   width: 50px;
-  padding-right: 20px;
+  padding-right: 10px;
   font-family: 'opensans_semibold';
-  text-align: right;
-  &:not(.isMe) {
-    color: @color-regulargrey;  
-  }
 }
 
 .message {
@@ -117,6 +146,7 @@ li {
 
 .timestamp {
   float: right;
+  font-size: 9px;
 }
 
 
@@ -141,9 +171,23 @@ li {
     bottom: 7em;
   }
 
+  li {
+    &.blip {
+      font-size: 12px;
+    }
+  }
+
+  .sender {
+    padding-right: 20px;
+  }
+
   .message {
     max-width: 65%;
     word-wrap: break-word;
+  }
+
+  .timestamp {
+    font-size: 10px;
   }
 
   #message-input, form {
@@ -173,6 +217,9 @@ li {
   .message {
     max-width: 75%;
     word-wrap: break-word;
+  }
+  .timestamp {
+    font-size: 12px;
   }
 }
 
