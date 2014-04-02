@@ -1,6 +1,7 @@
 @import (css) "../fonts/fontface.css";
 
-@color-lightgrey: #eee;  
+@color-lightgrey: #fafafa;
+@color-grey: #eee;
 @color-regulargrey: #A6A6A6;
 
 html, body {
@@ -10,6 +11,7 @@ html, body {
 body {
   max-width: 970px;
   margin: 0 auto;
+  background: @color-lightgrey;
 }
 
 #container {
@@ -19,10 +21,12 @@ body {
 
 section#content {
   top: 50px;
+  background: white;
   position: absolute;
   left: .5em;
   right: .5em;
   bottom: 4em;
+  box-shadow: 0 0 2px 0 @color-grey;
 }
 
 section#content ul {
@@ -41,7 +45,7 @@ footer#text-input {
   right: .5em;
   height: 3.5em;
   input {
-    background: @color-lightgrey;
+    background: @color-grey;
     box-shadow: inset 0px 0px 10px -3px;
     padding-left: 5px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -55,6 +59,12 @@ footer#text-input {
 #message-input, form {
   height: 80%;
   width: 100%;
+}
+
+.header-wrapper {
+  margin: .5em;
+  background: white;
+  box-shadow: 0 0 2px 0 @color-grey;
 }
 
 h1 {
@@ -74,23 +84,23 @@ ul {
 
 li {
   list-style-type: none;
+  position: relative;
   &.blip {
     width: 100%;
-    height: 35px;
     font-family: 'opensans_light';
     font-size: 12px;
-  &.join {
-    color: @color-lightgrey;
-  }
-    div {
-      display: inline-block;
-    }
   }
 }
 
+.message-wrapper {
+  overflow: auto;
+  padding: 10px 0 10px 0;
+}
+
 .sender {
+  float: left;
   width: 50px;
-  padding-right: 30px;
+  padding-right: 20px;
   font-family: 'opensans_semibold';
   text-align: right;
   &:not(.isMe) {
@@ -99,15 +109,20 @@ li {
 }
 
 .message {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  width: 40%;
+  float: left;
+  max-width: 45%;
+  word-wrap: break-word;
+  left: 80px;
 }
 
 .timestamp {
   float: right;
 }
 
+
+/***********************************************/
+/*media queries go here*/
+/***********************************************/
 @media all and (min-width: 450px) {
   header#site-header {
     padding: 30px 0;
@@ -127,8 +142,8 @@ li {
   }
 
   .message {
-    border-bottom: 1px dotted @color-lightgrey;
-    width: 65%;
+    max-width: 65%;
+    word-wrap: break-word;
   }
 
   #message-input, form {
@@ -142,7 +157,7 @@ li {
     right: .5em;
     height: 5em;
     input {
-      background: @color-lightgrey;
+      background: @color-grey;
       box-shadow: inset 0px 0px 16px -3px;
       padding-left: 15px;
       -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -156,14 +171,14 @@ li {
 
 @media all and (min-width: 600px) {
   .message {
-    border-bottom: 1px dotted @color-lightgrey;
-    width: 75%;
+    max-width: 75%;
+    word-wrap: break-word;
   }
 }
 
 @media all and (min-width: 800px) {
   .message {
-    border-bottom: 1px dotted @color-lightgrey;
-    width: 80%;
+    max-width: 80%;
+    word-wrap: break-word;
   }
 }
