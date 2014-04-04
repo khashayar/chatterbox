@@ -1,23 +1,29 @@
 'use strict';
 
-/*
- * Serve content over a socket
- */
+var cbox = global.$cbox;
 
 var uid = 0;
 
 module.exports = function (socket) {
-    uid++;
+    var user = socket.handshake.user;
+
+    // Prepare required fields for client
+    var info = {
+        timestamp: Date.now(),
+        user: {
+            id: user._id,
+            name: user.google.given_name,
+            email: user.google.email,
+            picture: user.google.picture
+        }
+    };
 
     // Send new user their username
-    socket.emit('init', { id: uid });
+    socket.emit('init', info);
 
     // socket.broadcast('user:join', {});
 
     socket.on('message:send', function(data) {
-        data.user = 'user-' + data.id;
-        data.time = Date.now();
-
         socket.broadcast.emit('message:send', data);
     });
 

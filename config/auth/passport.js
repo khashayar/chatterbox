@@ -1,5 +1,7 @@
 'use strict';
 
+var cbox = global.$cbox;
+
 // Strategies
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -10,8 +12,8 @@ var ObjectID = require('mongodb').ObjectID;
 
 var credentials = require('./credentials');
 
-module.exports = function(data) {
-    var passport = data.passport;
+module.exports = function() {
+    var passport = cbox.passport;
 
     // serialize the user for the session
     passport.serializeUser(function(user, done) {
@@ -20,7 +22,7 @@ module.exports = function(data) {
 
     // deserialize the user
     passport.deserializeUser(function(id, done) {
-        var users = data.db.collection('users');
+        var users = cbox.db.collection('users');
         users.findOne({'_id': ObjectID.createFromHexString(id)}, function(err, user) {
             done(err, user);
         });
@@ -34,27 +36,22 @@ module.exports = function(data) {
         clientSecret: credentials.google.clientSecret
 
     }, function(accessToken, refreshToken, profile, done) {
-        // console.log('-- Auth done');
 
         // asynchronous
         process.nextTick(function() {
-            var users = data.db.collection('users');
+            var users = cbox.db.collection('users');
             users.findOne({'google.id': profile.id}, function(err, user) {
                 if (err) { return done(err); }
 
                 if (user) {
                     return done(null, user);
                 } else {
-                    users.insert({
-                        google: {
-                            id: profile.id,
-                            token: accessToken,
-                            name: profile.displayName,
-                            email: profile.emails[0].value
-                        }
-                    }, {w:1}, function(err, result) {
+                    var google = profile._json;
+                    google.token = accessToken;
+
+                    users.insert({ google: google }, {w:1}, function(err, result) {
                         if (err) { throw err; }
-                        return done(null, result);
+                        return done(null, result[0]);
                     });
                 }
             });
