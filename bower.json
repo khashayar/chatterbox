@@ -19,6 +19,7 @@
     "angular": "~1.2.13",
     "angular-socket-io": "~0.4.0",
     "angular-route": "~1.2.13",
-    "angular-mocks": "~1.2.13"
+    "angular-mocks": "~1.2.13",
+    "fontawesome": "~4.0.3"
   }
 }
