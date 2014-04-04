@@ -9,8 +9,10 @@
     <section id="content">
         <ul id="message-container">
             <li ng-repeat="message in messages" class="blip">
-                <div class="message-wrapper">
-                    <img src="{{message.user.picture}}" width="30px" />
+                <div class="message-wrapper {{ message.user | isMe:user }}">
+                    <div class="avatar-container">
+                        <img src="{{message.user.picture}}" width="30px" />
+                    </div>
                     <div class="sender">{{message.user.name}}</div>
                     <div class="message">{{message.content}}</div>
                     <div class="timestamp">{{message.time | date:'HH:mm:ss'}}</div>

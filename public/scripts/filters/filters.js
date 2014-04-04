@@ -2,6 +2,6 @@
 
 chatterBox.filter('isMe', function() {
     return function(input, user) {
-        return (+input.slice(5) === user) ? 'isMe' : '';
+        return (input.id === user.id) ? 'isMe' : '';
     };
 });
