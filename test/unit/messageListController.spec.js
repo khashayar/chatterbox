@@ -20,9 +20,9 @@ describe('MessageListController', function(){
 
         it('should set user correctly on init emit', function () {
             // fake our server init event, with fake user '3'
-            socket.emit('init', {id: 3});
+            socket.emit('init', {user: {id: 3}});
             // user variable on client side should show user '3'
-            expect(scope.user).toEqual(3);
+            expect(scope.user.id).toEqual(3);
         });
 
         it('should append message array on emitted message', function () {

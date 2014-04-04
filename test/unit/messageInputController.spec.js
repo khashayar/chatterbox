@@ -19,9 +19,14 @@ describe('MessageInputController', function() {
     describe('send message', function() {
 
         it('should emit an event', function () {
-            scope.user = 1;
             scope.msg = 'Hello World!';
             scope.messages = [];
+            scope.user = {
+                id: 1,
+                name: 'Test Name',
+                email: 'user@example.com',
+                picture: 'http://image.com/profile.jpg'
+            };
 
             // define jasmine spy
             var spy = jasmine.createSpy();
@@ -35,9 +40,13 @@ describe('MessageInputController', function() {
 
             // if successful our spy will have been called as defined below
             expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({
-                id: 1,
-                msg: 'Hello World!',
-                user: 'user-' + 1
+                user: {
+                    id: 1,
+                    name: 'Test Name',
+                    email: 'user@example.com',
+                    picture: 'http://image.com/profile.jpg'
+                },
+                content: 'Hello World!'
             }));
         });
 
