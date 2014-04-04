@@ -6,10 +6,11 @@ chatterBox.controller('MessageListController', ['$scope', 'socket', function($sc
     $scope.user = null;
 
     socket.on('init', function (data) {
-        $scope.user = data.id;
+        $scope.user = data.user;
     });
 
     socket.on('message:send', function(data) {
+        console.log('message: ', data);
         $scope.messages.push(data);
     });
 }]);

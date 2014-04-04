@@ -15,7 +15,7 @@ module.exports = function(app, io, passport) {
     app.get('/auth/facebook', passport.authenticate('facebook'));
 
     // It should be the last route
-    // app.get('*', routes.index);
+    app.get('*', routes.index);
 
     // Socket.io Communication
     io.sockets.on('connection', require('./routes/socket'));

@@ -3,10 +3,9 @@
 chatterBox.controller('MessageInputController', ['$scope', 'socket', function($scope, socket) {
     $scope.sendMsg = function() {
         var data = {
-            id: $scope.user,
-            msg: $scope.msg,
             time: Date.now(),
-            user: 'user-' + $scope.user,
+            user: $scope.user,
+            content: $scope.msg
         };
 
         socket.emit('message:send', data);
