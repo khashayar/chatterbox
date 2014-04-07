@@ -10,7 +10,7 @@
     <section id="content">
         <ul id="message-container">
             <li ng-repeat="message in messages" class="blip">
-                <div class="message-wrapper {{ message.user | isMe:user }}">
+                <div class="message-wrapper {{ message.user }}">
                     <div class="avatar-container">
                         <img src="{{message.user.picture}}" width="30px" />
                     </div>
