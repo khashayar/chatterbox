@@ -9,10 +9,11 @@ module.exports = function(app, io, passport) {
 
     // Google Authentication
     app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-    app.get('/auth/google/callback', passport.authenticate('google', {successRedirect: '/profile', failureRedirect: '/'}));
+    app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/profile', failureRedirect: '/' }));
 
     // Facebook Authentication
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/profile', failureRedirect: '/' }));
 
     // It should be the last route
     app.get('*', routes.index);
