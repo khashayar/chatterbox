@@ -8,15 +8,22 @@ module.exports = function (socket) {
     var user = socket.handshake.user;
 
     // Prepare required fields for client
-    var info = {
-        timestamp: Date.now(),
-        user: {
+    var info = { timestamp: Date.now() };
+    if (user.google) {
+        info.user = {
             id: user._id,
             name: user.google.given_name,
             email: user.google.email,
             picture: user.google.picture
-        }
-    };
+        };
+    } else {
+        info.user = {
+            id: user._id,
+            name: user.facebook.name,
+            email: user.facebook.email,
+            picture: user.facebook.picture.data.url
+        };
+    }
 
     // Send new user their username
     socket.emit('init', info);
