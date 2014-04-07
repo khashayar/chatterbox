@@ -64,14 +64,31 @@ module.exports = function() {
 
         clientID: credentials.facebook.clientID,
         callbackURL: credentials.facebook.callbackURL,
-        clientSecret: credentials.facebook.clientSecret
+        clientSecret: credentials.facebook.clientSecret,
+        profileFields: ['displayName', 'photos', 'name', 'email']
 
     }, function(accessToken, refreshToken, profile, done) {
 
         // asynchronous
         process.nextTick(function() {
+            var users = cbox.db.collection('users');
+            users.findOne({'facebook.id': profile.id}, function(err, user) {
+                if (err) {
+                    return done(err);
+                }
 
+                if (user) {
+                    return done(null, user);
+                } else {
+                    var facebook = profile._json;
+                    facebook.token = accessToken;
+
+                    users.insert({ facebook: facebook }, {w:1}, function(err, result) {
+                        if (err) { throw err; }
+                        return done(null, result[0]);
+                    });
+                }
+            });
         });
-
     }));
 };
