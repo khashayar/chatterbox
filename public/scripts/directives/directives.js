@@ -4,12 +4,12 @@ chatterBox.directive('cboxAuth', function() {
     return {
         restrict: 'E',
         replace: true,
-        template: '<span class="fa fa-2x" ng-click="auth($event.target)"></span>',
+        template: '<div class="fa fa-2x" ng-click="auth($event.target)">Connect</div>',
         link: function(scope, element, attrs) {
             if (attrs.data === 'google') {
-                element.addClass('googleAuth fa-google-plus-square');
+                element.addClass('googleAuth fa-google-plus');
             } else {
-                element.addClass('facebookAuth fa-facebook-square');
+                element.addClass('facebookAuth fa-facebook');
             }
             scope.auth = function(data) {
                 if (data.attributes.data.value === 'google') {
