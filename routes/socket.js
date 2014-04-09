@@ -7,6 +7,16 @@ var uid = 0;
 module.exports = function (socket) {
     var user = socket.handshake.user;
 
+    socket.user = user;
+    socket.join('room');
+    var clients = this.clients('room');
+    var connectedUsers = [];
+
+    clients.forEach(function(client) {
+        connectedUsers.push(client.user);
+    });
+
+
     // Prepare required fields for client
     var info = { timestamp: Date.now() };
     if (user.google) {
@@ -28,7 +38,8 @@ module.exports = function (socket) {
     // Send new user their username
     socket.emit('init', info);
 
-    // socket.broadcast('user:join', {});
+    socket.emit('chatParticipants', connectedUsers);
+    socket.broadcast.emit('chatParticipants', connectedUsers);
 
     socket.on('message:send', function(data) {
         socket.broadcast.emit('message:send', data);
