@@ -24,31 +24,29 @@ body {
   position: relative;
 }
 
-.header-wrapper .facebookAuth {
-  position: absolute;
-  top: 12px;
-  right: 55px;
+.facebookAuth {
+  margin-top: 10%;
+  width: 50%;
+  margin-left: 25%;
+  display: block;
+  background: @color-facebookblue;
   cursor: pointer;
-  &:active {
-    color: @color-facebookblue;
-  }
   &:hover {
-    transform: scale(1.2);
-    -webkit-transform: scale(1.2);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
   }
 }
 
-.header-wrapper .googleAuth {
-  position: absolute;
-  top: 12px;
-  right: 18px;
+.googleAuth {
+  margin-top: 10%;
+  width: 50%;
+  margin-left: 25%;
+  display: block;
+  background: @color-googlered;
   cursor: pointer;
-  &:active {
-    color: @color-googlered;
-  }
   &:hover {
-    transform: scale(1.2);
-    -webkit-transform: scale(1.2);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
   }
 }
 
@@ -104,6 +102,19 @@ footer#text-input {
   background: white;
   box-shadow: 0 0 2px 0 @color-grey;
 }
+
+.cbox-participants {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  & li {
+    float: left;
+    & img {
+      border-radius: 50%;
+    }
+  }
+}
+
 
 h1 {
   text-align: center;
@@ -165,6 +176,9 @@ li {
   float: left;
   margin-right: 12px;
   position: relative;
+  img{
+    border-radius: 50%;
+  }
 }
 
 .sender {
