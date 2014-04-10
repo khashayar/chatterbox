@@ -1,16 +1,20 @@
 <header id="site-header">
     <div class="header-wrapper">
         <h1>chatterBox</h1>
-        <cbox-auth data="google"></cbox-auth>
-        <cbox-auth data="facebook"></cbox-auth>
+        <div class="cbox-participants">
+            <li ng-repeat="chatParticipant in chatParticipants" class="participant">
+                <span ng-if="chatParticipant.google"><img src="{{chatParticipant.google.picture}}" alt="user pic" width="50px"></span>
+                <span ng-if="chatParticipant.facebook"><img src="{{chatParticipant.facebook.picture.data.url}}" alt="user pic" width="50px"></span>
+            </li>
+        </div>
     </div>
 </header>
 
-<div class="chatBox" ng-controller="MessageListController">
+<div class="chatBox">
     <section id="content">
         <ul id="message-container">
             <li ng-repeat="message in messages" class="blip">
-                <div class="message-wrapper {{ message.user }}">
+                <div class="message-wrapper {{ message.user | isMe:user }}">
                     <div class="avatar-container">
                         <img src="{{message.user.picture}}" width="30px" />
                     </div>

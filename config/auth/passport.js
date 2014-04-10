@@ -70,7 +70,7 @@ module.exports = function() {
         clientID: credentials.facebook.clientID,
         callbackURL: credentials.facebook.callbackURL,
         clientSecret: credentials.facebook.clientSecret,
-        profileFields: ['displayName', 'photos', 'name', 'email']
+        profileFields: ['displayName', 'photos', 'name', 'email', 'friends']
 
     }, function(accessToken, refreshToken, profile, done) {
 
