@@ -1,15 +1,16 @@
 'use strict';
 
 var routes = require('./routes/index');
+var imports = require('./routes/import');
 // var auth = require('./routes/auth');
 
 module.exports = function(app, io, passport) {
     app.get('/', routes.index);
-    app.get('/profile', isLoggedIn, routes.profile);
+    app.get('/import/google', isSecure, imports.google);
 
     // Google Authentication
-    app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-    app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/profile', failureRedirect: '/' }));
+    app.get('/auth/google', passport.authenticate('google'));
+    app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/import/google', failureRedirect: '/failed' }));
 
     // Facebook Authentication
     app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
@@ -24,7 +25,7 @@ module.exports = function(app, io, passport) {
 
 // route middleware to make sure a user is logged in
 /*jshint latedef: false */
-function isLoggedIn(req, res, next) {
+function isSecure(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated()) {
         return next();

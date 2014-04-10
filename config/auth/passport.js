@@ -33,10 +33,15 @@ module.exports = function() {
 
         clientID: credentials.google.clientID,
         callbackURL: credentials.google.callbackURL,
-        clientSecret: credentials.google.clientSecret
+        clientSecret: credentials.google.clientSecret,
+        scope: [
+            'https://www.google.com/m8/feeds',
+            'https://www.googleapis.com/auth/userinfo.email',
+            'https://www.googleapis.com/auth/userinfo.profile'
+        ]
 
     }, function(accessToken, refreshToken, profile, done) {
-
+        
         // asynchronous
         process.nextTick(function() {
             var users = cbox.db.collection('users');
