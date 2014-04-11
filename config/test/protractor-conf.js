@@ -4,12 +4,16 @@ exports.config = {
     allScriptsTimeout: 11000,
 
     specs: [
-        '../test/e2e/*.js'
+        '../../test/e2e/*.js'
     ],
 
-    capabilities: {
-        'browserName': 'chrome'
-    },
+    chromeOnly: false,
+
+    multiCapabilities: [{
+    'browserName': 'chrome'
+    }, {
+    'browserName': 'firefox'
+    }],
 
     baseUrl: 'http://localhost:3000/',
 
