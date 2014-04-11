@@ -45,15 +45,19 @@ module.exports = function() {
         // asynchronous
         process.nextTick(function() {
             var users = cbox.db.collection('users');
+
+            // Let's see if user is already connected
             users.findOne({'google.id': profile.id}, function(err, user) {
                 if (err) { return done(err); }
 
+                var google = profile._json;
+                google.token = accessToken;
+
                 if (user) {
+                    // Update user data upon new connection
+                    users.update({ _id: user._id }, { google: google }, {w:0});
                     return done(null, user);
                 } else {
-                    var google = profile._json;
-                    google.token = accessToken;
-
                     users.insert({ google: google }, {w:1}, function(err, result) {
                         if (err) { throw err; }
                         return done(null, result[0]);
