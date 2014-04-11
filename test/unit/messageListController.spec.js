@@ -17,14 +17,15 @@ describe('MessageListController', function(){
     }));
 
     describe('set user', function() {
-
         it('should set user correctly on init emit', function () {
             // fake our server init event, with fake user '3'
             socket.emit('init', {user: {id: 3}});
             // user variable on client side should show user '3'
             expect(scope.user.id).toEqual(3);
         });
+    });
 
+    describe('get messages', function() {
         it('should append message array on emitted message', function () {
             // fake emitted message from server with below payload
             socket.emit('message:send', {user: 'user-1', msg: 'Hello World!', id: 1});
@@ -35,6 +36,19 @@ describe('MessageListController', function(){
                 msg: 'Hello World!',
                 id: 1
             }));
+        });
+    });
+
+    describe('get chatParticipants', function() {
+        it('should set correct amount of participants', function () {
+            socket.emit('chatParticipants', [{user: 'user-1', id: 1}, {user: 'user-2', id: 2}]);
+
+            expect(scope.chatParticipants[0]).toEqual(jasmine.objectContaining({
+                user: 'user-1',
+                id: 1
+            }));
+
+            expect(scope.chatParticipants.length).toEqual(2);
         });
     });
 });
