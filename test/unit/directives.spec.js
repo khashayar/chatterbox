@@ -12,8 +12,8 @@ describe('cboxAuth-directive', function(){
         scope = $rootScope.$new();
 
         // create target element
-        elementA = angular.element('<cbox-auth data="google"></cbox-auth>')
-        elementB = angular.element('<cbox-auth data="facebook"></cbox-auth>')
+        elementA = angular.element('<cbox-auth data="google"></cbox-auth>');
+        elementB = angular.element('<cbox-auth data="facebook"></cbox-auth>');
 
         // compile target element | compile takes scope as an argument
         $compile(elementA)(scope);
@@ -22,12 +22,12 @@ describe('cboxAuth-directive', function(){
 
     describe('cbox-auth', function() {
         it('should add a class according to its data attr', function () {
-            expect(elementA.hasClass("googleAuth")).toBe(true);
-            expect(elementB.hasClass("facebookAuth")).toBe(true);
+            expect(elementA.hasClass('googleAuth')).toBe(true);
+            expect(elementB.hasClass('facebookAuth')).toBe(true);
         });
 
         it('should have correct content', function () {
-            expect(elementA.html() && elementB.html()).toBe("Connect");
+            expect(elementA.html() && elementB.html()).toBe('Connect');
         });
     });
 });
