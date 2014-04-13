@@ -9,7 +9,7 @@ body {
   background: #fafafa;
   overflow: hidden;
 }
-#cb-container {
+#container {
   min-height: 100%;
   position: relative;
 }
@@ -37,13 +37,10 @@ body {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
 }
-.cb-chat-box {
+.chatBox {
   min-height: 300px;
 }
-#cb-contact-list {
-  min-height: 300px;
-}
-section#cb-content {
+section#content {
   top: 50px;
   background: white;
   position: absolute;
@@ -52,7 +49,7 @@ section#cb-content {
   bottom: 4em;
   box-shadow: 0 0 2px 0 #eeeeee;
 }
-section#cb-content ul {
+section#content ul {
   position: absolute;
   top: .5em;
   bottom: 0;
@@ -85,7 +82,7 @@ form {
   height: 80%;
   width: 100%;
 }
-.cb-header-wrapper {
+.header-wrapper {
   position: relative;
   margin: .5em;
   background: white;
@@ -180,7 +177,7 @@ li.blip {
 /*media queries go here*/
 /***********************************************/
 @media all and (min-width: 450px) {
-  header#cb-chat-header {
+  header#site-header {
     padding: 30px 0;
   }
   h1 {
@@ -190,7 +187,7 @@ li.blip {
     padding-left: 15px;
     margin-top: 0;
   }
-  section#cb-content {
+  section#content {
     top: 100px;
     bottom: 7em;
   }
