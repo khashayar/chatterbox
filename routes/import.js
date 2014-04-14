@@ -18,7 +18,7 @@ exports.google = function(req, res) {
 
         // Contact field for current member exists, no need to do anything here
         if (item) {
-            return res.redirect('/profile');
+            return res.redirect('/chat');
         }
 
 
@@ -83,7 +83,7 @@ exports.google = function(req, res) {
                     $addToSet: { contacts: { $each: ids } }
                 }, { w: 0 });
 
-                return res.redirect('/profile');
+                return res.redirect('/chat');
             });
 
         });

@@ -12,8 +12,8 @@ chatterBox.factory('socket', function (socketFactory) {
 .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         templateUrl: 'templates/home.html'
-    }).when('/profile', {
-        templateUrl: 'templates/container.html'
+    }).when('/chat', {
+        templateUrl: 'templates/chat.html'
     }).otherwise({redirectTo: '/'});
 
     $locationProvider.html5Mode(true);
