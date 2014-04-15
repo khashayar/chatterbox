@@ -1,0 +1,8 @@
+<div ng-controller="MessageListController">
+<ul>
+    <li ng-repeat="message in messages">{{message.content}}</li>
+</ul>
+<form ng-submit="sendMsg()" ng-controller="MessageInputController">
+    <input class="cb-message-input" type="text" placeholder="Message" autofocus required ng-model="msg">
+</form>
+</div>

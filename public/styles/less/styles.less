@@ -1,282 +1,76 @@
-@import (css) "../fonts/fontface.css";
-
-@color-lightgrey: #fafafa;
-@color-grey: #eee;
-@color-regulargrey: #A6A6A6;
-@color-lightbluetrans: rgba(173,216,230,.3);
-@color-lightgreentrans: rgba(144, 238, 144, .3);
-@color-googlered:  #dd4b39;
-@color-facebookblue: #3b5998;
+@container-width: 970px;
+@sidebar-width: 200px;
+@chat-width: @container-width - @sidebar-width;
 
 html, body {
-  height: 100%;
-}
-
-body {
-  max-width: 970px;
-  margin: 0 auto;
-  background: @color-lightgrey;
-  overflow: hidden;
-}
-
-#container {
-  min-height: 100%;
-  position: relative;
-}
-
-.facebookAuth {
-  margin-top: 10%;
-  width: 50%;
-  margin-left: 25%;
-  display: block;
-  background: @color-facebookblue;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-  }
-}
-
-.googleAuth {
-  margin-top: 10%;
-  width: 50%;
-  margin-left: 25%;
-  display: block;
-  background: @color-googlered;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-  }
-}
-
-.chatBox {
-  min-height: 300px;
-}
-
-section#content {
-  top: 50px;
-  background: white;
-  position: absolute;
-  left: .5em;
-  right: .5em;
-  bottom: 4em;
-  box-shadow: 0 0 2px 0 @color-grey;
-}
-
-section#content ul {
-  position: absolute;
-  top: .5em;
-  bottom: 0;
-  left: .5em;
-  right: 0;
-  overflow: auto;
-}
-
-footer#text-input {
-  position: absolute;
-  bottom: 0;
-  left: .5em;
-  right: .5em;
-  height: 3.5em;
-  input {
-    background: @color-grey;
-    box-shadow: inset 0px 0px 10px -3px;
-    padding-left: 5px;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-    border: none;
-    font: normal 15px 'opensans_light';
-  }
-}
-
-#message-input, form {
-  height: 80%;
-  width: 100%;
-}
-
-.header-wrapper {
-  position: relative;
-  margin: .5em;
-  background: white;
-  box-shadow: 0 0 2px 0 @color-grey;
-}
-
-.cbox-participants {
-  position: absolute;
-  top: 3px;
-  right: 10px;
-  & li {
-    float: left;
-    & img {
-      border-radius: 50%;
-    }
-  }
-}
-
-
-h1 {
-  text-align: center;
-  font-family: 'opensans_regular';
-  margin-top: 0;
-}
-
-p {
-  font-family: 'opensans_italic';
+    padding: 0;
+    margin: 0;
 }
 
 ul {
-  margin: 0;
-  padding: 0 10px 0 0;
+    margin: 0;
+    padding: 0;
+}
+li { list-style-type: none; }
+
+.clearfix:after {
+    content: " ";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
 
-li {
-  list-style-type: none;
-  position: relative;
-  &.blip {
-    width: 100%;
-    font-family: 'opensans_light';
-    font-size: 10px;
-  }
+#cb-container {
+    margin: 0 auto;
+    width: @container-width;
 }
 
-.message-wrapper {
-  overflow: auto;
-  padding: 10px;
-  margin: 5px;
-  &:before {
-    content: '';
-    background: @color-lightbluetrans;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-border-radius: 10px;
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-radius: 10px;
-    -moz-border-radius-bottomleft: 0;
-    border-radius: 10px;
-    border-bottom-left-radius: 0;
-  }
+#cb-sidebar {
+    float: left;
+    width: @sidebar-width;
 }
 
-.message-wrapper:not(.isMe):before {
-  background: @color-lightgreentrans;  
-    -webkit-border-radius: 10px;
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-radius: 10px;
-    -moz-border-radius-bottomleft: 0;
-    border-radius: 10px;
-    border-bottom-right-radius: 0;
+#cb-contacts {
+    background-color: #EEE;
+    border-right: 1px solid #DDD;
 }
 
-.avatar-container {
-  float: left;
-  margin-right: 12px;
-  position: relative;
-  img{
-    border-radius: 50%;
-  }
-}
+#cb-contacts li {
+    color: #666;
+    padding: 4px 8px;
 
-.sender {
-  float: left;
-  width: 50px;
-  padding-right: 10px;
-  font-family: 'opensans_semibold';
-}
-
-.message {
-  float: left;
-  max-width: 45%;
-  word-wrap: break-word;
-  left: 80px;
-}
-
-.timestamp {
-  float: right;
-  font-size: 9px;
-}
-
-
-/***********************************************/
-/*media queries go here*/
-/***********************************************/
-@media all and (min-width: 450px) {
-  header#site-header {
-    padding: 30px 0;
-  }
-
-  h1 {
-    text-align: left;
-    font-size: 40px;
-    text-shadow: 1px 1px 5px;
-    padding-left: 15px;
-    margin-top: 0;
-  }
-
-  section#content {
-    top: 100px;
-    bottom: 7em;
-  }
-
-  li {
-    &.blip {
-      font-size: 12px;
+    &.cb-selected {
+        background-color: #CCC;
     }
-  }
 
-  .sender {
-    padding-right: 20px;
-  }
-
-  .message {
-    max-width: 65%;
-    word-wrap: break-word;
-  }
-
-  .timestamp {
-    font-size: 10px;
-  }
-
-  #message-input, form {
-    height: 100%;
-  }
-
-  footer#text-input {
-    position: absolute;
-    bottom: 1.5em;
-    left: .5em;
-    right: .5em;
-    height: 5em;
-    input {
-      background: @color-grey;
-      box-shadow: inset 0px 0px 16px -3px;
-      padding-left: 15px;
-      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-      box-sizing: border-box;         /* Opera/IE 8+ */
-      border: none;
-      font: normal 35px 'opensans_semibold';
+    &.cb-active + li:not(.cb-active) {
+        border-top: 1px solid #BBB;
+        padding-top: 20px;
     }
-  }
 }
 
-@media all and (min-width: 600px) {
-  .message {
-    max-width: 75%;
-    word-wrap: break-word;
-  }
-  .timestamp {
-    font-size: 12px;
-  }
+#cb-chat-view {
+    margin-left: @sidebar-width;
+    padding: 0 8px;
+    width: @chat-width;
 }
 
-@media all and (min-width: 800px) {
-  .message {
-    max-width: 80%;
-    word-wrap: break-word;
-  }
+.cb-chat-box li {
+    padding-bottom: 5px;
+
+    &:last-child {
+        margin-bottom: 20px;
+    }
+}
+
+.cb-message-input {
+    font-size: 16px;
+    padding: 5px 3px;
+    width: @chat-width;
+}
+
+footer {
+    border-top: 1px solid #000;
+    margin-top: 100px;
 }

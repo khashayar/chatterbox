@@ -1,3 +1,32 @@
+<div id="cb-container">
+    <header>
+        <h1>Chatter Box</h1>
+    </header>
+
+    <section class="clearfix" ng-controller="ContactListController">
+        <section id="cb-sidebar">
+            <div id="cb-contacts">
+                <ul>
+                    <li ng-click="startChat(contact)"
+                        ng-repeat="contact in contacts | orderBy:sortorder"
+                        ng-class="{'cb-active': contact.activeSession, 'cb-selected': current == contact._id}">
+                        {{contact.google.name}}
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="cb-chat-view">
+            <div class="" ng-repeat="chat in chats">
+                <div class="cb-chat-box" ng-show="current == chat._id" user="user"></div>
+            </div>
+        </section>
+    </section>
+
+    <footer>Footer</footer>
+</div>
+
+<!--
 <header id="site-header">
     <div class="header-wrapper">
         <h1>chatterBox</h1>
@@ -32,3 +61,4 @@
         </form>
     </footer>
 </div>
+-->
