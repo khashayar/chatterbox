@@ -3,22 +3,22 @@
         <h1>Chatter Box</h1>
     </header>
 
-    <section class="clearfix" ng-controller="ContactListController">
+    <section class="clearfix" ng-controller="UserController">
         <section id="cb-sidebar">
-            <div id="cb-contacts">
+            <div id="cb-contacts" ng-controller="ContactListController">
                 <ul>
                     <li ng-click="startChat(contact)"
                         ng-repeat="contact in contacts | orderBy:sortorder"
-                        ng-class="{'cb-active': contact.activeSession, 'cb-selected': current == contact._id}">
-                        {{contact.google.name}}
+                        ng-class="{'cb-active': contact.activeSession, 'cb-selected': selected == contact.id}">
+                        {{contact.displayName}}
                     </li>
                 </ul>
             </div>
         </section>
 
         <section id="cb-chat-view">
-            <div class="" ng-repeat="chat in chats">
-                <div class="cb-chat-box" ng-show="current == chat._id" user="user"></div>
+            <div class="" ng-repeat="chamber in chambers">
+                <div class="cb-chat-chamber" ng-show="current == chamber.id" chamber="chamber"></div>
             </div>
         </section>
     </section>

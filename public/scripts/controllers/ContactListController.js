@@ -8,16 +8,13 @@ chatterBox.controller('ContactListController', ['$scope', 'socket', function($sc
     });
 
     $scope.startChat = function(contact) {
-        $scope.chats = $scope.chats || [];
+        contact[$scope.sortorder] = true;
+        $scope.selected = contact.id;
 
-        $scope.current = contact._id;
-
-        var idx = $scope.chats.indexOf(contact);
-
-        if (idx === -1) {
-            contact[$scope.sortorder] = true;
-            $scope.chats.push(contact);
-        }
+        // Ask server to prepare a chamber for current participants
+        socket.emit('chamber:create', {
+            participants: [contact.id]
+        });
     };
 
 }]);
