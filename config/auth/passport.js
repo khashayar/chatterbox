@@ -46,7 +46,7 @@ module.exports = function() {
         process.nextTick(function() {
             var users = cbox.db.collection('users');
 
-            // Let's see if user is already connected
+            // Let's check if user is already connected
             users.findOne({'google.id': profile.id}, function(err, user) {
                 if (err) { return done(err); }
 
@@ -58,7 +58,12 @@ module.exports = function() {
                     users.update({ _id: user._id }, { google: google }, {w:0});
                     return done(null, user);
                 } else {
-                    users.insert({ google: google }, {w:1}, function(err, result) {
+                    var record = {
+                        displayName: google.name,
+                        google: google
+                    };
+
+                    users.insert(record, {w:1}, function(err, result) {
                         if (err) { throw err; }
                         return done(null, result[0]);
                     });
@@ -74,7 +79,8 @@ module.exports = function() {
         clientID: credentials.facebook.clientID,
         callbackURL: credentials.facebook.callbackURL,
         clientSecret: credentials.facebook.clientSecret,
-        profileFields: ['displayName', 'photos', 'name', 'email', 'friends']
+        profileFields: ['id', 'username', 'displayName', 'name', 'gender', 'emails', 'photos', 'friends'],
+        scope: ['basic_info', 'email']
 
     }, function(accessToken, refreshToken, profile, done) {
 
@@ -82,17 +88,21 @@ module.exports = function() {
         process.nextTick(function() {
             var users = cbox.db.collection('users');
             users.findOne({'facebook.id': profile.id}, function(err, user) {
-                if (err) {
-                    return done(err);
-                }
+                if (err) { return done(err); }
+
+                var facebook = profile._json;
+                facebook.token = accessToken;
+                facebook.picture = facebook.picture.data.url;
 
                 if (user) {
                     return done(null, user);
                 } else {
-                    var facebook = profile._json;
-                    facebook.token = accessToken;
+                    var record = {
+                        displayName: facebook.name,
+                        facebook: facebook
+                    };
 
-                    users.insert({ facebook: facebook }, {w:1}, function(err, result) {
+                    users.insert(record, {w:1}, function(err, result) {
                         if (err) { throw err; }
                         return done(null, result[0]);
                     });

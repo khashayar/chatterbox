@@ -16,7 +16,7 @@ var sessionStore = new express.session.MemoryStore();
 
 var app = cbox.app = express();
 var server = require('http').createServer(app);
-var io = cbox.io = require('socket.io').listen(server, { log: true });
+var io = cbox.io = require('socket.io').listen(server, { log: false });
 
 io.configure(function() {
     io.set('authorization', function (handshakeData, accept) {
@@ -31,7 +31,7 @@ io.configure(function() {
                 return accept('Error while parsing cookie', false);
             }
 
-            console.log('--- SignedCookies: ', handshakeData.signedCookies);
+            // console.log('--- SignedCookies: ', handshakeData.signedCookies);
 
             // Get the associated session for this ID. If it doesn't exist, then bail.
             sessionStore.get(handshakeData.signedCookies[SESSION_KEY], function(err, session) {

@@ -6,6 +6,7 @@ var imports = require('./routes/import');
 
 module.exports = function(app, io, passport) {
     app.get('/', routes.index);
+    app.get('/chat', isSecure, routes.index);
     app.get('/import/google', isSecure, imports.google);
 
     // Google Authentication
@@ -13,7 +14,7 @@ module.exports = function(app, io, passport) {
     app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/import/google', failureRedirect: '/failed' }));
 
     // Facebook Authentication
-    app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user_about_me', 'user_birthday', 'user_friends', 'user_interests']}));
+    app.get('/auth/facebook', passport.authenticate('facebook'));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/profile', failureRedirect: '/' }));
 
     // It should be the last route
