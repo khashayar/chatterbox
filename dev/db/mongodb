@@ -1,0 +1,6 @@
+db.createCollection('users', { capped: false, autoIndexId: true });
+db.users.ensureIndex({ 'google.id': 1 }, { unique: true, sparse: true });
+db.users.ensureIndex({ 'facebook.id': 1 }, { unique: true, sparse: true });
+
+db.createCollection('chambers', { capped: false, autoIndexId: true });
+db.createCollection('messages', { capped: false, autoIndexId: true });
