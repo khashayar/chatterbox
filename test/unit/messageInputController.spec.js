@@ -10,44 +10,61 @@ describe('MessageInputController', function() {
     beforeEach(inject(function($rootScope, $controller) {
         /* global io */
         socket = io.connect();
-        // get scope
+
+        // Get scope
         scope = $rootScope.$new();
-        // instantiate controller with injected dependencies
+
+        // Initialize the scope with injected properties
+        scope.messages = [];
+        scope.chamber = {
+            id: 123,
+            participants: [456]
+        };
+
+        // Instantiate controller with injected dependencies
         ctrl = $controller('MessageInputController', {$scope: scope, socket: socket});
     }));
 
     describe('send message', function() {
 
         it('should emit an event', function () {
-            scope.msg = 'Hello World!';
-            scope.messages = [];
-            scope.user = {
-                id: 1,
-                name: 'Test Name',
-                email: 'user@example.com',
-                picture: 'http://image.com/profile.jpg'
-            };
+            scope.msg = 'Hallo Welt!';
 
-            // define jasmine spy
+            // Define jasmine spy
             var spy = jasmine.createSpy();
 
-            // set up spy listener
-            // spy should be called on below defined event
+            // Set up spy listener
+            // Spy should be called on below defined event
             socket.on('message:send', spy);
 
-            // calling method that is supposed to emit spied event
+            // Calling method that is supposed to emit spied event
             scope.sendMsg();
 
-            // if successful our spy will have been called as defined below
+            // If successful our spy will have been called as defined below
             expect(spy).toHaveBeenCalledWith(jasmine.objectContaining({
-                user: {
-                    id: 1,
-                    name: 'Test Name',
-                    email: 'user@example.com',
-                    picture: 'http://image.com/profile.jpg'
-                },
-                content: 'Hello World!'
+                content: 'Hallo Welt!',
+                chamber: {
+                    id: 123,
+                    participants: [456]
+                }
             }));
+        });
+
+        it('should push the message to messages list', function() {
+            scope.msg = 'Die erste Nachricht';
+            scope.sendMsg();
+
+            scope.msg = 'Die zweite Nachricht';
+            scope.sendMsg();
+
+            expect(scope.messages.length).toEqual(2);
+        });
+
+        it('should reset the msg property after sending a message', function() {
+            scope.msg = 'Guten Morgen!';
+            scope.sendMsg();
+
+            expect(scope.msg).toBe(undefined);
         });
 
     });
