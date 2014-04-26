@@ -1,5 +1,13 @@
 <ul>
-    <li ng-repeat="message in messages">{{message.content}}</li>
+    <li ng-repeat="message in messages">
+        <div class="cb-chamber-user-avatar">
+            <img src="{{message.user.picture}}" title="{{message.user.displayName}}" />
+        </div>
+        <div class="cb-chamber-message-meta">
+            <span class="cb-chamber-message-time" title="{{message.time | date:'fullDate'}}">{{message.time | date:'h:mm'}}</span>
+            <p class="cb-chamber-message-content">{{message.content}}</p>
+        </div>
+    </li>
 </ul>
 <form ng-submit="sendMsg()" ng-controller="MessageInputController">
     <input class="cb-message-input" type="text" placeholder="Message" autofocus required ng-model="msg">

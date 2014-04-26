@@ -23,7 +23,6 @@ chatterBox.controller('UserController', ['$scope', 'socket', function($scope, so
         $scope.current = chamber.id;
 
         if (!exist) {
-            console.log('Chamber rendered');
             $scope.chambers.push(chamber);
         }
     });

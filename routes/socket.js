@@ -1,7 +1,6 @@
 'use strict';
 
 var cbox = global.$cbox;
-
 var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function (socket) {
@@ -34,6 +33,8 @@ module.exports = function (socket) {
                 contacts = (contacts || []).map(function(c) {
                     return {
                         id: c._id,
+                        picture: c.google.picture,
+                        connected: c.connected,
                         displayName: c.displayName
                     };
                 });
@@ -74,19 +75,46 @@ module.exports = function (socket) {
             var clients = io.sockets.clients();
 
             clients.forEach(function(client) {
-                console.log('### Client check: ', client.handshake.user.google.email, 'with id: ', client.handshake.user._id);
                 // Current user is connected and a participant of current chamber?
                 if (data.participants.indexOf(client.handshake.user._id.toHexString()) !== -1) {
-                    console.log('+++ User joined: ', client.handshake.user.google.email, ' to chamber: ', chamber.id);
                     client.join(chamber.id);
                 }
             });
 
-            // At this point, only let the current user, who asked to prepare a new
-            // chamber, know about the created chamber, other participants will be
-            // informed as soon as a message is sent in this chamber.
-            socket.emit('chamber:join', chamber);
+            var users = cbox.db.collection('users');
+            users.find({ '_id': { $in: participants } }).toArray(function(error, results) {
+                if (error) { throw error; }
+
+                var ps = results.map(function(p) {
+                    return {
+                        id: p._id,
+                        picture: p.google.picture,
+                        displayName: p.displayName
+                    };
+                });
+
+                chamber.participants = ps;
+
+                // At this point, only let the current user, who asked to prepare a new
+                // chamber, know about the created chamber, other participants will be
+                // informed as soon as a message is sent in this chamber.
+                socket.emit('chamber:join', chamber);
+
+            });
         });
+    });
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // Chamber Message History
+    socket.on('chamber:messages', function(data, callback) {
+        var messages = cbox.db.collection('messages');
+
+        var chamberId = ObjectID.createFromHexString(data.chamber.id);
+        messages.find({ 'chamber': chamberId }).toArray(function(err, results) {
+                if (err) { throw err; }
+
+                callback(results);
+            });
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -97,7 +125,9 @@ module.exports = function (socket) {
         console.log('--- Broadcast to chamber: ', data.chamber.id);
 
         // In case of this is the first message in this chamber, let the other
-        // participants know about 
+        // participants know about
+        // TODO: Don't relay the participants object of chamber, getting from current
+        // user to others. Risk of altered object or invalid data here.
         socket.broadcast.to(data.chamber.id).emit('chamber:join', data.chamber);
 
         // Note: Broadcasting 'chamber:join' and then immediately after that 'message:send'
@@ -111,7 +141,7 @@ module.exports = function (socket) {
 
             // Save the message in db
             messages.insert({
-                sent: new Date(),
+                time: new Date(),
                 author: user._id,
                 content: data.content,
                 chamber: ObjectID.createFromHexString(data.chamber.id)
@@ -121,7 +151,7 @@ module.exports = function (socket) {
                 // Now notify others
                 socket.broadcast.to(data.chamber.id).emit('message:send', {
                     id: result[0]._id.toHexString(),
-                    time: result[0].sent,
+                    time: result[0].time,
                     user: clientUserObject,
                     content: data.content,
                     chamber: data.chamber.id
