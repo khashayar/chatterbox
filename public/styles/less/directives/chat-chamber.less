@@ -1,0 +1,35 @@
+@avatar-height: 35px;
+@avatar-width: 35px;
+
+.cb-chat-chamber {
+    position: relative;
+
+    li {
+        min-height: @avatar-height;
+        padding: 10px;
+
+        &:last-child {
+            margin-bottom: 20px;
+        }
+    }
+
+    .cb-chamber-user-avatar {
+        float: left;
+
+        img {
+            border-radius: 50%;
+            height: @avatar-height;
+            width: @avatar-width;
+        }
+    }
+
+    .cb-chamber-message-meta {
+        margin-left: @avatar-width;
+        padding: 3px 10px;
+    }
+
+    .cb-chamber-message-time {
+        float: right;
+        margin-left: 50px;
+    }
+}

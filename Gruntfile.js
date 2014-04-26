@@ -12,7 +12,10 @@ module.exports = function(grunt) {
         less: {
             dev: {
                 files: {
-                    'public/styles/styles.css': 'public/styles/less/*.less'
+                    'public/styles/styles.css': [
+                        'public/styles/less/styles.less',
+                        'public/styles/less/directives/chat-chamber.less'
+                    ]
                 }
             }
         },
@@ -81,7 +84,7 @@ module.exports = function(grunt) {
         watch: {
             styles: {
                 // Which files to watch (all .less files recursively in the less directory)
-                files: ['public/styles/less/*.less'],
+                files: ['public/styles/less/**/*.less'],
                 tasks: ['less'],
                 options: {
                     nospawn: true

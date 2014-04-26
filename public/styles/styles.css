@@ -10,6 +10,9 @@ ul {
 li {
   list-style-type: none;
 }
+p {
+  margin: 0;
+}
 .clearfix:after {
   content: " ";
   clear: both;
@@ -42,21 +45,43 @@ li {
 }
 #cb-chat-view {
   margin-left: 200px;
-  padding: 0 8px;
   width: 770px;
-}
-.cb-chat-box li {
-  padding-bottom: 5px;
-}
-.cb-chat-box li:last-child {
-  margin-bottom: 20px;
 }
 .cb-message-input {
+  display: block;
   font-size: 16px;
+  margin: 0 auto;
   padding: 5px 3px;
-  width: 770px;
+  width: 740px;
 }
 footer {
   border-top: 1px solid #000;
   margin-top: 100px;
+}
+
+.cb-chat-chamber {
+  position: relative;
+}
+.cb-chat-chamber li {
+  min-height: 35px;
+  padding: 10px;
+}
+.cb-chat-chamber li:last-child {
+  margin-bottom: 20px;
+}
+.cb-chat-chamber .cb-chamber-user-avatar {
+  float: left;
+}
+.cb-chat-chamber .cb-chamber-user-avatar img {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+.cb-chat-chamber .cb-chamber-message-meta {
+  margin-left: 35px;
+  padding: 3px 10px;
+}
+.cb-chat-chamber .cb-chamber-message-time {
+  float: right;
+  margin-left: 50px;
 }
