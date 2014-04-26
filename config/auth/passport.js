@@ -53,15 +53,25 @@ module.exports = function() {
                 var google = profile._json;
                 google.token = accessToken;
 
+                var record = {
+                    google: google,
+                    connected: true,
+                    displayName: google.name
+                };
+
                 if (user) {
+                    // User record is in database, could be either connected
+                    // or already imported as a contact for another user
+                    if (user.connected) {
+                        // Don't override displayName if already connected
+                        delete record.displayName;
+                    }
+
                     // Update user data upon new connection
-                    users.update({ _id: user._id }, { google: google }, {w:0});
+                    users.update({ _id: user._id }, { $set: record }, {w:0});
                     return done(null, user);
                 } else {
-                    var record = {
-                        displayName: google.name,
-                        google: google
-                    };
+                    record.connected = true;
 
                     users.insert(record, {w:1}, function(err, result) {
                         if (err) { throw err; }

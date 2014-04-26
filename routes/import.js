@@ -75,6 +75,7 @@ exports.google = function(req, res) {
 
                 return {
                     displayName: user.name || user.given_name || user.family_name || user.email,
+                    connected: false,
                     google: user
                 };
             }).filter(function (u) {

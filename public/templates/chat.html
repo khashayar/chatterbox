@@ -8,7 +8,7 @@
             <div id="cb-contacts" ng-controller="ContactListController">
                 <ul>
                     <li ng-click="startChat(contact)"
-                        ng-repeat="contact in contacts | orderBy:sortorder"
+                        ng-repeat="contact in contacts | orderBy:['activeSession','connected']"
                         ng-class="{'cb-active': contact.activeSession, 'cb-selected': selected == contact.id}">
                         {{contact.displayName}}
                     </li>
@@ -17,8 +17,8 @@
         </section>
 
         <section id="cb-chat-view">
-            <div class="" ng-repeat="chamber in chambers">
-                <div class="cb-chat-chamber" ng-show="current == chamber.id" chamber="chamber"></div>
+            <div ng-repeat="chamber in chambers">
+                <div class="cb-chat-chamber" ng-show="current == chamber.id" chamber="chamber" user="user"></div>
             </div>
         </section>
     </section>
