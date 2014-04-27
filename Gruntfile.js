@@ -102,9 +102,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-node-inspector');
     grunt.loadNpmTasks('grunt-protractor-runner');
 
-    grunt.registerTask('unit-test', ['karma']);
     grunt.registerTask('styles', ['less']);
     grunt.registerTask('dev', ['concurrent']);
-    grunt.registerTask('e2e-test', ['express:dev', 'protractor']);
-    grunt.registerTask('tests', ['karma', 'express:dev', 'protractor']);
+    grunt.registerTask('test-unit', ['karma']);
+    grunt.registerTask('test-e2e', ['express:dev', 'protractor']);
+    grunt.registerTask('test', ['karma', 'express:dev', 'protractor']);
 };

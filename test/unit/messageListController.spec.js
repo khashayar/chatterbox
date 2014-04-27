@@ -10,45 +10,52 @@ describe('MessageListController', function(){
     beforeEach(inject(function($rootScope, $controller) {
         /* global io */
         socket = io.connect();
+
         // get scope
         scope = $rootScope.$new();
+
+        // Initialize the scope with injected properties
+        scope.chamber = {
+            id: 123456,
+            participants: [789]
+        };
+
         // instantiate controller with the injected dependencies
         ctrl = $controller('MessageListController', {$scope: scope, socket: socket});
     }));
 
-    describe('set user', function() {
-        it('should set user correctly on init emit', function () {
-            // fake our server init event, with fake user '3'
-            socket.emit('init', {user: {id: 3}});
-            // user variable on client side should show user '3'
-            expect(scope.user.id).toEqual(3);
-        });
-    });
-
-    describe('get messages', function() {
-        it('should append message array on emitted message', function () {
+    describe('receive message', function() {
+        it('should push the message to messages list', function () {
             // fake emitted message from server with below payload
-            socket.emit('message:send', {user: 'user-1', msg: 'Hello World!', id: 1});
+            socket.emit('message:send', {
+                id: 98765,
+                user: {},
+                chamber: 123456,
+                content: 'Hallo Welt!'
+            });
 
             // client messages array should now include emitted message
             expect(scope.messages[0]).toEqual(jasmine.objectContaining({
-                user: 'user-1',
-                msg: 'Hello World!',
-                id: 1
+                id: 98765,
+                user: {},
+                chamber: 123456,
+                content: 'Hallo Welt!'
             }));
         });
     });
 
-    describe('get chatParticipants', function() {
-        it('should set correct amount of participants', function () {
-            socket.emit('chatParticipants', [{user: 'user-1', id: 1}, {user: 'user-2', id: 2}]);
+    describe('receive message', function() {
+        it('should not push the message to messages list for not a valid chamber', function () {
+            // fake emitted message from server
+            socket.emit('message:send', {
+                id: 98765,
+                user: {},
+                chamber: 11111,
+                content: 'Hallo Welt!'
+            });
 
-            expect(scope.chatParticipants[0]).toEqual(jasmine.objectContaining({
-                user: 'user-1',
-                id: 1
-            }));
-
-            expect(scope.chatParticipants.length).toEqual(2);
+            // Messages array should be empty
+            expect(scope.messages.length).toEqual(0);
         });
     });
 });

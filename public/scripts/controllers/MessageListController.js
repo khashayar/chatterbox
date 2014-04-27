@@ -5,8 +5,6 @@ chatterBox.controller('MessageListController', ['$scope', 'socket', function($sc
 
     // Fetch message history of this chamber
     socket.emit('chamber:messages', {chamber: $scope.chamber}, function(messages) {
-        console.log(messages);
-
         messages = messages.map(function(m) {
             var author;
 
@@ -29,8 +27,6 @@ chatterBox.controller('MessageListController', ['$scope', 'socket', function($sc
 
     // React on a new message
     socket.on('message:send', function(data) {
-        console.log('Message recieved: ', data);
-
         // Not a message for this chamber, ignore it
         if ($scope.chamber.id !== data.chamber) {
             return;
